@@ -29,4 +29,10 @@ return [
 	'admin:guidtool:search' => 'GUID Search',
 	'admin:guidtool:list' => 'Browse GUIDs',
 	'admin:guidtool:view' => 'View GUID Info',
+
+	'guidtool:type_and_subtype' => 'Type and subtype',
+
+	'guidtool:filter' => 'Filter',
+	'guidtool:clear' => 'Clear',
+	'guidtool:help:autocomplete' => 'Enter a full entity GUID or type the first few letters of the title and select an entity from the popup',
 ];

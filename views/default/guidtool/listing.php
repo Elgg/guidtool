@@ -28,7 +28,7 @@ if ($entity->canEdit()) {
 }
 
 $name = elgg_view('output/url', [
-	'text' => $entity->getDisplayName() ?: '(No title)',
+	'text' => ($entity->getDisplayName() ?: '(No title)') . ' ' . elgg_view_icon('external-link'),
 	'href' => $entity->getURL(),
 ]);
 
@@ -57,6 +57,11 @@ if ($by) {
 	]);
 
 	$subtext .= ' ' . elgg_get_friendly_time($entity->time_created);
+	$body .= "<div class=\"elgg-subtext\">$subtext</div>";
+} else {
+	$subtext = '(No owner)';
+	$subtext .= ' ' . elgg_get_friendly_time($entity->time_created);
+	
 	$body .= "<div class=\"elgg-subtext\">$subtext</div>";
 }
 

@@ -9,7 +9,7 @@
  * @link http://elgg.com/
  */
 
-if ($vars['full']) {
+if ($vars['full_view']) {
     echo elgg_view("guidtool/profile", $vars);
 } else {
     if (get_input('search_viewtype') == "gallery") {

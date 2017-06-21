@@ -35,4 +35,6 @@ return [
 	'guidtool:filter' => 'Filter',
 	'guidtool:clear' => 'Clear',
 	'guidtool:help:autocomplete' => 'Enter a full entity GUID or type the first few letters of the title and select an entity from the popup',
+
+	'private_settings' => 'Private Settings',
 ];

@@ -23,16 +23,16 @@ $serialized = $entity->toObject();
 $serialized->php_class = get_class($entity);
 
 $metadata = elgg_get_metadata($options);
+$ps = get_all_private_settings($entity->guid);
 $annotations = elgg_get_annotations($options);
 $relationships = get_entity_relationships($entity->guid);
 $inv_relationships = get_entity_relationships($entity->guid, true);
 
-
 ?>
-    <div>
-        <h2 class="pbm ptl"><?php echo elgg_echo('Entity'); ?></h2>
+	<div>
+		<h2 class="pbm ptl"><?php echo elgg_echo('Entity'); ?></h2>
 
-        <table class="elgg-table">
+		<table class="elgg-table">
 			<?php foreach ($serialized as $k => $v) {
 				switch ($k) {
 					case 'subtype':
@@ -84,51 +84,67 @@ $inv_relationships = get_entity_relationships($entity->guid, true);
 
 				}
 				?>
-                <tr>
-                    <td><label><?php echo $k; ?></label></td>
-                    <td><?php echo $v; ?></td>
-                </tr>
+				<tr>
+					<td><label><?php echo $k; ?></label></td>
+					<td><?php echo $v; ?></td>
+				</tr>
 			<?php } ?>
-        </table>
-    </div>
+		</table>
+	</div>
 
 <?php if ($metadata) { ?>
-    <div id="metadata" class="mtm">
-        <h2 class="pbm ptl"><?php echo elgg_echo('metadata'); ?></h2>
-        <table class="elgg-table">
+	<div id="metadata" class="mtm">
+		<h2 class="pbm ptl"><?php echo elgg_echo('metadata'); ?></h2>
+		<table class="elgg-table">
 			<?php foreach ($metadata as $m) { ?>
-                <tr>
-                    <td><label><?php echo $m->name; ?></label></td>
-                    <td><?php echo $m->value; ?></td>
-                </tr>
+				<tr>
+					<td><label><?php echo $m->name; ?></label></td>
+					<td><?php echo $m->value; ?></td>
+				</tr>
 			<?php } ?>
-        </table>
-    </div>
+		</table>
+	</div>
 <?php } ?>
 
 <?php if ($annotations) { ?>
-    <div id="annotations" class="mtm">
-        <h2 class="pbm ptl"><?php echo elgg_echo('annotations'); ?></h2>
-        <table class="elgg-table">
+	<div id="annotations" class="mtm">
+		<h2 class="pbm ptl"><?php echo elgg_echo('annotations'); ?></h2>
+		<table class="elgg-table">
 			<?php
 			foreach ($annotations as $a) { ?>
-                <tr>
-                    <td><label><?php echo $a->name; ?></label></td>
-                    <td><?php echo $a->value; ?></td>
-                </tr>
+				<tr>
+					<td><label><?php echo $a->name; ?></label></td>
+					<td><?php echo $a->value; ?></td>
+				</tr>
 			<?php } ?>
-        </table>
-    </div>
+		</table>
+	</div>
+<?php } ?>
+
+
+<?php if ($ps) { ?>
+	<div id="private-settings" class="mtm">
+		<h2 class="pbm ptl"><?php echo elgg_echo('private_settings'); ?></h2>
+		<table class="elgg-table">
+			<?php
+			foreach ($ps as $n => $v) { ?>
+				<tr>
+					<td><label><?php echo $n; ?></label></td>
+					<td><?php echo $v; ?></td>
+				</tr>
+			<?php } ?>
+		</table>
+	</div>
 <?php } ?>
 
 <?php if ($relationships) { ?>
-    <div id="relationship" class="mtm">
-        <h2 class="pbm ptl">Relationships (guid_one = <?php echo $entity->guid; ?>)</h2>
-        <table class="elgg-table">
+	<div id="relationship" class="mtm">
+		<h2 class="pbm ptl">Relationships (guid_one = <?php echo $entity->guid; ?>)</h2>
+		<table class="elgg-table">
 			<?php foreach ($relationships as $r) { ?>
-                <tr>
-                    <td><label><?php echo $r->relationship; ?></label></td>
-                    <td><?php
+				<tr>
+					<td><label><?php echo $r->relationship; ?></label></td>
+					<td><?php
 						echo $r->guid_two;
 
 						$tmp = get_entity($r->guid_two);
@@ -143,21 +159,21 @@ $inv_relationships = get_entity_relationships($entity->guid, true);
 						}
 
 						?></td>
-                </tr>
+				</tr>
 			<?php } ?>
-        </table>
-    </div>
+		</table>
+	</div>
 <?php } ?>
 
 
 <?php if ($inv_relationships) { ?>
-    <div id="inv_relationship" class="mtm">
-        <h2 class="pbm ptl">Inverse Relationships (guid_two = <?php echo $entity->guid; ?>)</h2>
-        <table class="elgg-table">
+	<div id="inv_relationship" class="mtm">
+		<h2 class="pbm ptl">Inverse Relationships (guid_two = <?php echo $entity->guid; ?>)</h2>
+		<table class="elgg-table">
 			<?php foreach ($inv_relationships as $r) { ?>
-                <tr>
-                    <td><label><?php echo $r->relationship; ?></label></td>
-                    <td><?php
+				<tr>
+					<td><label><?php echo $r->relationship; ?></label></td>
+					<td><?php
 						echo $r->guid_one;
 
 						$tmp = get_entity($r->guid_one);
@@ -172,8 +188,8 @@ $inv_relationships = get_entity_relationships($entity->guid, true);
 						}
 
 						?></td>
-                </tr>
+				</tr>
 			<?php } ?>
-        </table>
-    </div>
+		</table>
+	</div>
 <?php }
